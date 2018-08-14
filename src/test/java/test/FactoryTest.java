@@ -1,7 +1,9 @@
 package test;
 
 import org.junit.Test;
+import service.Provider;
 import service.Sender;
+import service.impl.EmailFactory;
 import service.impl.EmailSender;
 import service.impl.SmsSender;
 
@@ -27,6 +29,12 @@ public class FactoryTest {
         //静态工厂模式，优先选择此种方式创建对象
         EmailSender emailSenderStatic = SendFactory.produceStaticEmail();
         emailSenderStatic.send();
+
+        //抽象工厂模式
+        Provider provider = new EmailFactory();
+        Sender sender1 = provider.produce();
+        sender1.send();
+
     }
 
 
